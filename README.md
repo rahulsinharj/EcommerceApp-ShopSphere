@@ -36,28 +36,28 @@ ShopSphere follows a loosely coupled, event-driven microservices architecture.
 
 ```mermaid
 flowchart TD
-    Client[Client (Web/Mobile)]
-    Gateway[API Gateway]
+    Client["Client (Web/Mobile)"]
+    Gateway["API Gateway"]
     
     %% Services
-    CustSvc[Customer Service]
-    ProdSvc[Product Service]
-    CartSvc[Cart Service]
-    OrderSvc[Order Service]
-    InvSvc[Inventory Service]
-    PaySvc[Payment Service]
-    NotifSvc[Notification Service]
-    RecSvc[Recommendation Service]
-    AnalyticsSvc[Analytics Service]
+    CustSvc["Customer Service"]
+    ProdSvc["Product Service"]
+    CartSvc["Cart Service"]
+    OrderSvc["Order Service"]
+    InvSvc["Inventory Service"]
+    PaySvc["Payment Service"]
+    NotifSvc["Notification Service"]
+    RecSvc["Recommendation Service"]
+    AnalyticsSvc["Analytics Service"]
     
     %% Databases & Cache
-    CustDB[(Customer DB)]
-    ProdDB[(Product DB)]
-    CartDB[(Cart DB)]
-    OrderDB[(Order DB + Outbox)]
-    InvDB[(Inventory DB)]
-    Redis[(Redis Cache)]
-    Kafka[[Apache Kafka]]
+    CustDB[("Customer DB")]
+    ProdDB[("Product DB")]
+    CartDB[("Cart DB")]
+    OrderDB[("Order DB + Outbox")]
+    InvDB[("Inventory DB")]
+    Redis[("Redis Cache")]
+    Kafka[["Apache Kafka"]]
     
     Client --> Gateway
     Gateway --> CustSvc
@@ -65,20 +65,20 @@ flowchart TD
     Gateway --> CartSvc
     Gateway --> OrderSvc
     
-    ProdSvc -. "Sync Independent (CompletableFuture)" .-> InvSvc
-    ProdSvc -. "Sync Independent (CompletableFuture)" .-> RecSvc
+    ProdSvc -.->|"Sync Independent (CompletableFuture)"| InvSvc
+    ProdSvc -.->|"Sync Independent (CompletableFuture)"| RecSvc
     ProdSvc --> Redis
-    Redis -. "Cache Miss" .-> ProdDB
+    Redis -.->|"Cache Miss"| ProdDB
     
     OrderSvc ==>|"1. Reserve (Sync Dependent)"| InvSvc
     OrderSvc ==>|"2. Pay (Sync Dependent)"| PaySvc
-    OrderSvc -. "3. Release (Saga Compensation)" .-> InvSvc
+    OrderSvc -.->|"3. Release (Saga Compensation)"| InvSvc
     
     OrderSvc --> OrderDB
-    OrderDB -. "Outbox Poller" .-> Kafka
-    Kafka -. "order.created" .-> NotifSvc
-    Kafka -. "order.created" .-> AnalyticsSvc
-    Kafka -. "order.created" .-> RecSvc
+    OrderDB -.->|"Outbox Poller"| Kafka
+    Kafka -.->|"order.created"| NotifSvc
+    Kafka -.->|"order.created"| AnalyticsSvc
+    Kafka -.->|"order.created"| RecSvc
 ```
 
 ---
