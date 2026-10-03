@@ -1,0 +1,1 @@
+# ADR 006: Why database-per-service?\n\n**Status:** Accepted\n**Context:** Sharing a single database introduces coupling.\n**Decision:** Each service owns its database.\n**Consequences:** Data cannot be JOINed across services. Must use API composition or event sourcing.

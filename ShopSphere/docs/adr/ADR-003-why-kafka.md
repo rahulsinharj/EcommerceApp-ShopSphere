@@ -1,0 +1,1 @@
+# ADR 003: Why Kafka for asynchronous communication?\n\n**Status:** Accepted\n**Context:** Services like Notification, Analytics need to react to events without blocking the main flow.\n**Decision:** Use Apache Kafka as the event backbone.\n**Consequences:** High throughput, guaranteed ordering per partition, persistent events.

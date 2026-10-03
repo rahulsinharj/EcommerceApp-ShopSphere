@@ -1,0 +1,1 @@
+# ADR 009: Why orderId as Kafka partition key?\n\n**Status:** Accepted\n**Context:** Order state changes (CREATED, PAID, SHIPPED) must be processed in order.\n**Decision:** Use orderId as the partition key.\n**Consequences:** All events for a specific order go to the same partition, guaranteeing ordered consumption.

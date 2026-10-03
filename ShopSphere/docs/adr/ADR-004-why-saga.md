@@ -1,0 +1,1 @@
+# ADR 004: Why Saga instead of distributed transactions?\n\n**Status:** Accepted\n**Context:** Orders involve inventory reservation and payment processing across databases.\n**Decision:** Use orchestration-based Saga instead of 2PC.\n**Consequences:** Avoids database locks across networks. Requires writing compensating transactions (e.g., release inventory).

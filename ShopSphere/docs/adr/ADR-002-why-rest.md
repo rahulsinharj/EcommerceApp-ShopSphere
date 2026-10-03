@@ -1,0 +1,1 @@
+# ADR 002: Why REST for synchronous communication?\n\n**Status:** Accepted\n**Context:** Microservices need to communicate synchronously for immediate read-heavy dependencies.\n**Decision:** Use REST (Spring WebClient/HTTP Interfaces).\n**Consequences:** Ubiquitous, easy to debug, but can suffer from latency. Mitigated with Resilience4j.

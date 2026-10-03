@@ -1,0 +1,1 @@
+# ADR 007: Why Redis?\n\n**Status:** Accepted\n**Context:** Product catalog is read-heavy and rarely changes compared to reads.\n**Decision:** Use Redis for caching (Cache-Aside).\n**Consequences:** Improves latency. Requires cache invalidation strategy on updates.

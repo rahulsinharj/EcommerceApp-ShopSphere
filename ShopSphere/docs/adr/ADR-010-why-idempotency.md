@@ -1,0 +1,1 @@
+# ADR 010: Why idempotency is required?\n\n**Status:** Accepted\n**Context:** Networks fail, Kafka retries, and consumers may process the same event twice.\n**Decision:** All mutating endpoints and Kafka consumers must be idempotent.\n**Consequences:** Prevents duplicate charges or double inventory deductions. Requires storing idempotency keys.

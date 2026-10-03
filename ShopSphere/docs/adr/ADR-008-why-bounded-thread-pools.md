@@ -1,0 +1,1 @@
+# ADR 008: Why bounded thread pools?\n\n**Status:** Accepted\n**Context:** Unbounded thread creation leads to OutOfMemory and high context switching.\n**Decision:** Use bounded ThreadPoolTaskExecutor with proper RejectionPolicies.\n**Consequences:** Graceful degradation under load instead of crashing.

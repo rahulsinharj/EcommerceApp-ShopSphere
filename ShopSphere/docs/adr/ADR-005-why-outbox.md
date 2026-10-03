@@ -1,0 +1,1 @@
+# ADR 005: Why Outbox Pattern?\n\n**Status:** Accepted\n**Context:** We need to update local database and publish a Kafka event atomically.\n**Decision:** Use Transactional Outbox.\n**Consequences:** Guarantees at-least-once delivery of events. Requires an idempotent consumer.
