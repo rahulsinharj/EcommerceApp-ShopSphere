@@ -34,6 +34,11 @@ Modern e-commerce platforms must handle massive scale, intermittent network fail
 
 ShopSphere follows a loosely coupled, event-driven microservices architecture. 
 
+</a> <img src="https://github.com/rahulsinharj/EcommerceApp-ShopSphere/blob/main/architecture-diagram.svg"></a>
+
+---
+
+
 ```mermaid
 flowchart TD
     Client["Client (Web/Mobile)"]
